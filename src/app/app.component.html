@@ -1,0 +1,100 @@
+<h1>Hello from my angular app</h1>
+<hr>
+<app-sam-comp></app-sam-comp>
+<span>this came from app.component.ts {{firstName}}</span>
+<!--comes from app.component.ts-->
+<p>
+  <!-- property binding -->
+<img [src]="imgpath" alt="">
+<p>
+  <!--EVENT BINDING this passs to app.component too; open console too-->
+<input type="text" (input)="passValToComp($event)">
+<p>
+<!-- TWO WAY BINDING  this kid of binding is called banana in the box-->
+<input type="text" [(ngModel)]="defaultTew" />
+<span>{{defaultTew}}</span>
+
+<div class="container">
+  <h2>Structural Directives</h2>
+  <div class="row">
+    <div class="row-md-12">
+      <button class="btn btn-success" (click)="approve(true)">Approve</button>
+      <button class="btn btn-danger" (click)="approve(false)">Reject</button>
+    </div>
+    <div class="col-md-12">
+      <p *ngIf="isApproved">Your app is approved</p>
+      <p *ngIf="!isApproved">Yay, your app is rejected</p>
+    </div>
+<hr>
+<h2>Structural directives ngFor</h2>
+<div class="row">
+  <div class="col-md-12">
+    <p *ngFor="let number of numbers; let i=index">
+    {{i + 1}}  {{number}}
+    </p>
+  </div>
+</div>
+
+<!--this needs forms model in the app.moduel.ts-->
+<h2>Structural directives ngSwitch</h2>
+<div class="row">
+  <div class="col-md-12">
+    <input type="number" name="luckyNum" [(ngModel)]="luckyNum" />
+    
+  </div>
+<div class="col-md-12" [ngSwitch]="luckyNum">
+<p *ngSwitchCase="1">Strong</p>
+<p *ngSwitchCase="2">weak</p>
+<p *ngSwitchCase="3">intelligent</p>
+<p *ngSwitchCase="4">Fool</p>
+<p *ngSwitchDefault>Enter from num 1 to 4</p>
+</div>
+
+
+
+<!--here the ngif is in span b/c we can't use 2 structural directives in the same dom-->
+<div class="row">
+  <div class="col-md-12">
+    <p *ngFor="let number of numbers; let i=index">
+  
+    <span *ngIf="(i+1)%2===0">{{i + 1}}  {{number}}</span>
+  </p>
+  </div>
+</div>
+
+  </div>
+
+<!------->
+  <h2>Attribute Directives ngClass</h2>
+  <div class="row">
+    <div class="row-md-12">
+      <p [ngClass]="{
+        red: highlightColor === 'red',
+        'green-color': highlightColor === 'green',
+        'blue': highlightColor === 'blue' 
+      }">click any button to highlight me</p>
+    </div>
+      <div class="row-md-12">
+     
+      <button class="btn btn-success" (click)="highlight('green')">Green</button>
+      <button class="btn btn-danger" (click)="highlight('red')">Red</button>
+      <button class="btn btn-primary" (click)="highlight('blue')">Blue</button>
+    </div>
+  </div>
+
+<!------->
+<h2>Attribute Directives - ngStyle</h2>
+<div class="row">
+  <div class="col-md-12">
+    <p [ngStyle]="{
+      color: tewStyleApplied === true ? 'white' : 'black',
+      backgroundColor: tewStyleApplied ? 'green' : 'white'
+    }">Click to toggle</p>
+  </div>
+  <div class="col-md-12">
+    <button class="btn btn-primary" (click)="toggleMe()">Toggle it</button>
+  </div>
+</div>
+</div>
+<app-parent></app-parent>
+
